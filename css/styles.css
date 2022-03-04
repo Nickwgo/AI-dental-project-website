@@ -1,0 +1,303 @@
+/*body*/
+body {
+    font-family: "Merriweather";
+}
+
+/*hr*/
+hr.style1 {
+    border-bottom: 10px dotted rgb(58, 58, 58);
+}
+hr.style2 {
+    border-bottom: 3px solid rgb(58, 58, 58);
+}
+
+/*nav menu*/
+nav {
+    background-color: rgba(105, 105, 105, 0.15) !important;
+    backdrop-filter: blur(5px) !important;
+    border-bottom-right-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    font-family: 'Red Rose', cursive !important;
+}
+
+
+
+.input-group.searchbar {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.button.search {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+img {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+/*main title in middle of home screen*/
+#title {
+    color: rgb(209, 209, 209);
+}
+
+.grid-margin-y {
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+    margin: none !important;
+}
+
+/*prevent flickering of styles on dropdown menu*/
+.is-dropdown-submenu-parent>a:after {
+    display: none !important;
+}
+
+/*dropdown menu*/
+.menu li a {
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    color: black;
+}
+
+/*dropdown menu hover*/
+.menu li a:hover {
+    border-bottom: 1px solid rgb(0, 0, 0) !important;
+    color: rgb(189, 189, 189) !important;
+}
+
+
+
+
+/*all menus*/
+.menu {
+    background: inherit !important;
+    border: 0px !important;
+}
+
+/*each individual drop down item*/
+.menu ul li a {
+
+    background-color: rgba(255, 255, 255, 0.15) !important;
+
+
+    line-height: normal;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px dashed black;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+
+    padding: 5px !important;
+}
+
+.menu ul li a:hover {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+}
+
+/*gives first element in a menu top dounded corners*/
+.menu ul li:first-child a {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+/*gives last element in a menu bottom rounded corners*/
+.menu ul li:last-child a {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+/*makes sure any elements that are not the first in a menu dont get top rounded corners*/
+.menu>li:not(:first-child)>a {
+    border-top-right-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+
+/*makes sure any elements that are not the last in a menu dont get bottom rounded corners*/
+.menu>li:not(:last-child)>a {
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+/*sets the width of a dropdown menu*/
+.dropdown.menu>li>.is-dropdown-submenu {
+    min-width: 100px !important;
+    margin-top: 15px !important;
+}
+
+/*gives childeren of menus the same width as the parent*/
+ul.vertical li a {
+    max-width: 100%;
+}
+
+
+.icon {
+    min-width: 25px !important;
+}
+
+
+.search-field {
+    width: 0;
+    height: 5%;
+    /* height: 40px; */
+    margin-left: 1rem;
+    padding: 0px;
+    border-radius: 50px;
+    border: none;
+    margin: 0px !important;
+    margin-left: 5px !important;
+    transition: all 0.5s ease;
+}
+
+.expand-search {
+    width: 80%;
+    max-width: calc(80% - 3rem);
+    border: 1px solid #c9c9c9;
+    padding: .5rem;
+}
+
+/*button*/
+.button {
+    border-radius: 50px !important;
+}
+
+/*search bar*/
+input[type="search"] {
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+/*search bar hover*/
+input[type="search"]:hover,
+input[type="search"]:focus {
+    background-color: rgba(255, 255, 255, 0.096);
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid black;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+/*the searchbars cell in the navigation grid*/
+.cell.searchBar {
+    min-width: 120px !important;
+    min-height: 40px !important;
+}
+
+/*the three lined menu dropdown*/
+a.threeLineMenu {
+    padding: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+/*styles the iframe*/
+.wrapper {
+    /* position: relative;
+    padding-top: 56.25%;
+    height: 0; */
+    position: relative;
+    /* overflow: hidden; */
+    padding-top: 56.25%;
+}
+
+.wrapper iframe {
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+/*styles the infoBox*/
+.infoBox {
+    position: relative;
+    padding: 0px;
+    margin: 0px !important;
+    border: none;
+    background-color: rgb(197, 197, 197);
+    border-radius: 10px;
+    max-width: 350px;
+    min-width: 200px;
+    width: 100%;
+    height: 300px;
+}
+
+.subInfoBox {
+    position: relative;
+    padding: 0px;
+    margin: 0px !important;
+    border: none;
+    max-width: 500px;
+    min-width: 200px;
+    width: 100%;
+    height: 300px;
+}
+
+.centerVertical {
+    margin: 0px !important;
+    position: absolute !important;
+    top: 50% !important;
+    -ms-transform: translateY(-50%) !important;
+    transform: translateY(-50%) !important;
+}
+
+.centerHorizontal {
+    margin: auto !important;
+    width: 60% !important;
+    padding: 10px !important;
+}
+
+footer{
+    background-color: rgba(224, 224, 224, 0.548);
+}
+
+container#licenseContainer{
+    font-size: 13px;
+}
+
+article.teamMemberContainer{
+    position: relative;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0px;
+    color: black;
+    max-width: 250px;
+    min-width: 210px;
+}
+
+article.teamMemberContainer img.teamMemberPhoto{
+    width: 100%;
+    height: 100%;
+}
+
+.grid-x.image-grid .cell{
+    max-width: 250px;
+    min-width: 210px;
+}
+
+
+article.teamMemberContainer div.info{
+    position: absolute;
+    bottom: 0%;
+    background-color: rgba(255, 255, 255, 0.171);
+    backdrop-filter: blur(5px) !important;
+    width: 100%;
+    height: 22%;
+}
+
+article.teamMemberContainer div.info div.name{
+    font-weight: bold;
+}
