@@ -144,9 +144,10 @@
                                         </ul>
                                     </li>
                                     <!--contact-->
-                                    <li class="is-dropdown-submenu-parent">
+                                    <li>
                                         <a href="#"
-                                            onclick="insertContent('/pages/contact/contact.html'); insertHTMLContent('title', '<h1 class=text-center>Contact</h1>');">Contact</a>
+                                            onclick="insertContent('/pages/contact/contact.html'); insertHTMLContent('title', '<h1 class=text-center>Contact</h1>');">Contact
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -160,7 +161,7 @@
                                 <a class="button search" style="background-color: rgba(0, 0, 0, 0) !important">
                                     <img src="resources/searchIcon.png" alt="search" style="width: 35px" />
                                 </a>
-                                <input class="input-field search-field" type="search" placeholder="Search"
+                                <input class="input-field search-field searchBar" type="search" onsearch = search() placeholder="Search"
                                     style="font-size: 13px !important" />
                             </div>
                         </div>
@@ -171,7 +172,7 @@
             <!--search bar for large screens-->
             <div class="top-bar-right show-for-large">
                 <ul class="menu">
-                    <li><input type="search" placeholder="Search" /></li>
+                    <li><input type="search" class = "searchBar" onsearch = search() placeholder="Search" /></li>
                     <li><button type="button" class="button">Search</button></li>
                 </ul>
             </div>
