@@ -17,7 +17,6 @@ $(function () {
         // if the search field is expanded, focus on it
         if ($(".search-field").hasClass("expand-search")) {
             $(".search-field").focus();
-
         }
     });
 });
@@ -25,7 +24,7 @@ $(function () {
 function insertContent(filePath) {
     const iframe = document.getElementById("contentIframe");
     iframe.src = filePath;
-    console.log("done");
+    console.log("loaded: " + filePath);
 }
 
 function insertHTMLContent(idToGet, text) {
@@ -59,7 +58,7 @@ function search() {
     const searchField = document.getElementsByClassName("searchBar");
     for (var i = 0; i < searchField.length; i++) {
         var val = searchField[i].value;
-        if ((val != "") && (val != undefined)) {
+        if ((val != "") && (val != undefined) && (val != null)) {
             val = val.toLowerCase();
             jQuery
                 .ajax({
@@ -75,22 +74,40 @@ function search() {
                         }
 
                         //compare search query to results
+                        var results = new Array();
                         console.log("search: " + val);
                         for (const file of files) {
-                            if (file.toLowerCase().includes(val)) {
-                                const result = file.replace(/([A-Z])/g, " $1");
+                            //if there is a search result add it to the list
+                            if (file.fileName.toLowerCase().includes(val)) {
+                                const result = file.fileName.replace(/([A-Z])/g, " $1");
                                 const resultName = (result.charAt(0).toUpperCase() + result.slice(1)).trim();
-                                console.log(resultName);
+                                var temp = {
+                                    displayName: resultName,
+                                    file: file.path
+                                };
+                                results.push(temp);
                             }
                         }
+                        //display the list of results
+                        const resultDisplays = document.getElementsByClassName("searchResults");
+                        var html = "<ul class='vertical menu'>";
+                        for (var j = 0; j < results.length; j++) {
+                            var onclick = "onclick=\x22insertContent('" + results[j].file + "'); insertHTMLContent('title', '<h1 class=text-center>" + results[j].displayName + "</h1>');\x22";
+                            html += "\n<li class = 'text-center'><a href = '#'" + onclick + ">" + results[j].displayName + "</a></li>"
+                        }
+                        html += "\n</ul>";
+                        console.log(html);
+                        for (var resultDisply of resultDisplays) {
 
-
+                            resultDisply.innerHTML = html;
+                        }
+                        console.log(results);
                     },
                 })
                 .fail(function (textStatus, errorThrown) {
                     console.log("STATUS: " + textStatus + " ERROR: " + errorThrown);
                 });
+            break;
         }
     }
-
 }

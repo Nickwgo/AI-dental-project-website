@@ -188,6 +188,13 @@ input[type="search"]:focus {
     min-height: 40px !important;
 }
 
+.searchResults{
+    background-color: rgba(105, 105, 105, 0.15) !important;
+    backdrop-filter: blur(5px) !important;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
 /*the three lined menu dropdown*/
 a.threeLineMenu {
     padding: 0px !important;

@@ -18,7 +18,10 @@
                                 $files = array_merge($files, $temp);
 
                             }else{
-                                array_push($files, pathinfo($newPath)['filename']);
+                                $data = array();
+                                $data['fileName'] = pathinfo($newPath)['filename'];
+                                $data['path'] = $newPath;
+                                array_push($files, $data);
                             }
                         }
                     }
