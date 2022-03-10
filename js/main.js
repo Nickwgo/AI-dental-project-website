@@ -58,7 +58,7 @@ function search() {
     const searchField = document.getElementsByClassName("searchBar");
     for (var i = 0; i < searchField.length; i++) {
         var val = searchField[i].value;
-        if ((val != "") && (val != undefined) && (val != null)) {
+        if (val != "" && val != undefined && val != null) {
             val = val.toLowerCase();
             jQuery
                 .ajax({
@@ -66,7 +66,6 @@ function search() {
                     url: "/php/getPages.php",
                     dataType: "json",
                     success: function (obj) {
-                        console.log("success");
                         if (!("error" in obj)) {
                             var files = obj.result;
                         } else {
@@ -75,7 +74,6 @@ function search() {
 
                         //compare search query to results
                         var results = new Array();
-                        console.log("search: " + val);
                         for (const file of files) {
                             //if there is a search result add it to the list
                             if (file.fileName.toLowerCase().includes(val)) {
@@ -83,7 +81,7 @@ function search() {
                                 const resultName = (result.charAt(0).toUpperCase() + result.slice(1)).trim();
                                 var temp = {
                                     displayName: resultName,
-                                    file: file.path
+                                    file: file.path,
                                 };
                                 results.push(temp);
                             }
@@ -91,17 +89,18 @@ function search() {
                         //display the list of results
                         const resultDisplays = document.getElementsByClassName("searchResults");
                         var html = "<ul class='vertical menu'>";
-                        for (var j = 0; j < results.length; j++) {
-                            var onclick = "onclick=\x22insertContent('" + results[j].file + "'); insertHTMLContent('title', '<h1 class=text-center>" + results[j].displayName + "</h1>');\x22";
-                            html += "\n<li class = 'text-center'><a href = '#'" + onclick + ">" + results[j].displayName + "</a></li>"
+                        if (results.length === 0) {
+                            html = "<p class = 'text-center'>No Results :/</p>";
+                        } else {
+                            for (var j = 0; j < results.length; j++) {
+                                var onclick = "onclick=\x22insertContent('" + results[j].file + "'); insertHTMLContent('title', '<h1 class=text-center>" + results[j].displayName + "</h1>'); clearSearch();\x22";
+                                html += "\n<li class = 'text-center'><a href = '#'" + onclick + ">" + results[j].displayName + "</a></li>";
+                            }
+                            html += "\n</ul>";
                         }
-                        html += "\n</ul>";
-                        console.log(html);
                         for (var resultDisply of resultDisplays) {
-
                             resultDisply.innerHTML = html;
                         }
-                        console.log(results);
                     },
                 })
                 .fail(function (textStatus, errorThrown) {
@@ -111,3 +110,33 @@ function search() {
         }
     }
 }
+
+//function to hide the visibility of the search result box
+function hideSearchResults() {
+    const resultDisplays = document.getElementsByClassName("searchResults");
+    for(var resultDisplay of resultDisplays){
+        resultDisplay.style.display = "none";
+    }
+}
+
+//function to reveal the visibility of the search result box
+function revealSearchResults() {
+    const resultDisplays = document.getElementsByClassName("searchResults");
+    for(var resultDisplay of resultDisplays){
+        resultDisplay.style.display = "block";
+    }
+}
+
+//function to clear the searches
+function clearSearch(){
+    const resultDisplays = document.getElementsByClassName("searchResults");
+    for(var resultDisplay of resultDisplays){
+        resultDisplay.innerHTML = "";
+    }
+    const searchField = document.getElementsByClassName("searchBar");
+    for (var searchBar of searchField){
+        searchBar.value = "";
+    }
+}
+
+window.addEventListener("resize", clearSearch);

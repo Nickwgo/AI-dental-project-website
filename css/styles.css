@@ -17,10 +17,8 @@ nav {
     backdrop-filter: blur(5px) !important;
     border-bottom-right-radius: 20px !important;
     border-bottom-left-radius: 20px !important;
-    font-family: 'Red Rose', cursive !important;
+    font-family: "Red Rose", cursive !important;
 }
-
-
 
 .input-group.searchbar {
     margin: 0px !important;
@@ -49,7 +47,7 @@ img {
 }
 
 /*prevent flickering of styles on dropdown menu*/
-.is-dropdown-submenu-parent>a:after {
+.is-dropdown-submenu-parent > a:after {
     display: none !important;
 }
 
@@ -65,9 +63,6 @@ img {
     color: rgb(189, 189, 189) !important;
 }
 
-
-
-
 /*all menus*/
 .menu {
     background: inherit !important;
@@ -76,14 +71,12 @@ img {
 
 /*each individual drop down item*/
 .menu ul li a {
-
     background-color: rgba(255, 255, 255, 0.15) !important;
-
 
     line-height: normal;
     width: 100%;
     text-align: center;
-    border-bottom: 1px dashed black;
+    /* border-bottom: 1px dashed black; */
     box-shadow: none !important;
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
@@ -110,19 +103,19 @@ img {
 }
 
 /*makes sure any elements that are not the first in a menu dont get top rounded corners*/
-.menu>li:not(:first-child)>a {
+.menu > li:not(:first-child) > a {
     border-top-right-radius: 0px !important;
     border-top-left-radius: 0px !important;
 }
 
 /*makes sure any elements that are not the last in a menu dont get bottom rounded corners*/
-.menu>li:not(:last-child)>a {
+.menu > li:not(:last-child) > a {
     border-bottom-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
 }
 
 /*sets the width of a dropdown menu*/
-.dropdown.menu>li>.is-dropdown-submenu {
+.dropdown.menu > li > .is-dropdown-submenu {
     min-width: 100px !important;
     margin-top: 15px !important;
 }
@@ -132,11 +125,9 @@ ul.vertical li a {
     max-width: 100%;
 }
 
-
 .icon {
     min-width: 25px !important;
 }
-
 
 .search-field {
     width: 0;
@@ -155,7 +146,7 @@ ul.vertical li a {
     width: 80%;
     max-width: calc(80% - 3rem);
     border: 1px solid #c9c9c9;
-    padding: .5rem;
+    padding: 0.5rem;
 }
 
 /*button*/
@@ -188,11 +179,13 @@ input[type="search"]:focus {
     min-height: 40px !important;
 }
 
-.searchResults{
-    background-color: rgba(105, 105, 105, 0.15) !important;
-    backdrop-filter: blur(5px) !important;
+.searchResults {
+    background-color: rgba(255, 255, 255, 0.055) !important;
+    backdrop-filter: blur(10px) !important;
     margin-top: 10px;
     border-radius: 10px;
+    width: 60%;
+    overflow: hidden;
 }
 
 /*the three lined menu dropdown*/
@@ -225,7 +218,6 @@ a.threeLineMenu {
     height: 100%;
     border: 0;
 }
-
 
 /*styles the infoBox*/
 .infoBox {
@@ -266,15 +258,15 @@ a.threeLineMenu {
     padding: 10px !important;
 }
 
-footer{
+footer {
     background-color: rgba(224, 224, 224, 0.548);
 }
 
-container#licenseContainer{
+container#licenseContainer {
     font-size: 13px;
 }
 
-article.teamMemberContainer{
+article.teamMemberContainer {
     position: relative;
     text-align: center;
     border-radius: 10px;
@@ -285,18 +277,17 @@ article.teamMemberContainer{
     min-width: 210px;
 }
 
-article.teamMemberContainer img.teamMemberPhoto{
+article.teamMemberContainer img.teamMemberPhoto {
     width: 100%;
     height: 100%;
 }
 
-.grid-x.image-grid .cell{
+.grid-x.image-grid .cell {
     max-width: 250px;
     min-width: 210px;
 }
 
-
-article.teamMemberContainer div.info{
+article.teamMemberContainer div.info {
     position: absolute;
     bottom: 0%;
     background-color: rgba(255, 255, 255, 0.171);
@@ -305,6 +296,6 @@ article.teamMemberContainer div.info{
     height: 22%;
 }
 
-article.teamMemberContainer div.info div.name{
+article.teamMemberContainer div.info div.name {
     font-weight: bold;
 }

@@ -3,10 +3,11 @@
 
        $aResult = array();
        $path = str_replace('/', '\\', $_SERVER['DOCUMENT_ROOT']);
+       $root = $path;
        $path .= "\\pages";
 
         //function to get a list of all the html pages
-        function getFiles($path){
+        function getFiles($path, $root){
             $files = array();
             if (is_dir($path)) {
                 if ($dh = opendir($path)) {
@@ -14,13 +15,13 @@
                         $newPath = $path."\\".$file;
                         if($file != "." && $file != ".."){
                             if (is_dir($newPath)){
-                                $temp = getFiles($newPath);
+                                $temp = getFiles($newPath, $root);
                                 $files = array_merge($files, $temp);
 
                             }else{
                                 $data = array();
                                 $data['fileName'] = pathinfo($newPath)['filename'];
-                                $data['path'] = $newPath;
+                                $data['path'] = str_replace("//", "/", str_replace("\\", "/", str_replace($root, "/", $newPath)));
                                 array_push($files, $data);
                             }
                         }
@@ -31,7 +32,7 @@
             return $files;
         }
 
-        $files = getFiles($path);
+        $files = getFiles($path, $root);
 
         
 
