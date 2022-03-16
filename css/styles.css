@@ -11,6 +11,11 @@ hr.style2 {
     border-bottom: 3px solid rgb(58, 58, 58);
 }
 
+/*p*/
+p {
+    margin: 0px !important;
+}
+
 /*nav menu*/
 nav {
     background-color: rgba(105, 105, 105, 0.15) !important;

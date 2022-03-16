@@ -34,8 +34,8 @@ function insertHTMLContent(idToGet, text) {
 
 //function to resize the iframe and its wrapper
 function resizeIFrame() {
-    const iframe = document.getElementById("contentIframe");
-    const wrapper = document.getElementById("iframeWrapper");
+    const iframe = window.top.document.getElementById("contentIframe");
+    const wrapper = window.top.document.getElementById("iframeWrapper");
     if (iframe != null && wrapper != null) {
         height = iframe.contentWindow.document.body.scrollHeight + "px";
         iframe.style.height = height;
@@ -47,13 +47,9 @@ window.addEventListener("resize", resizeIFrame);
 
 //function to overwrite the current page with the given html file
 function overwritePage(path) {
-    document.close();
-    fetch(path)
-        .then((response) => response.text())
-        .then((text) => document.write(text));
+    window.location.pathname = path;
 }
 
-//function to find and display search results
 function search() {
     const searchField = document.getElementsByClassName("searchBar");
     for (var i = 0; i < searchField.length; i++) {
@@ -62,29 +58,15 @@ function search() {
             val = val.toLowerCase();
             jQuery
                 .ajax({
-                    type: "GET",
-                    url: "/php/getPages.php",
+                    type: "POST",
+                    url: "/php/request.php",
+                    data: { function: "getResults", request: val },
                     dataType: "json",
                     success: function (obj) {
                         if (!("error" in obj)) {
-                            var files = obj.result;
+                            var results = obj.result;
                         } else {
                             console.log(obj.error);
-                        }
-
-                        //compare search query to results
-                        var results = new Array();
-                        for (const file of files) {
-                            //if there is a search result add it to the list
-                            if (file.fileName.toLowerCase().includes(val)) {
-                                const result = file.fileName.replace(/([A-Z])/g, " $1");
-                                const resultName = (result.charAt(0).toUpperCase() + result.slice(1)).trim();
-                                var temp = {
-                                    displayName: resultName,
-                                    file: file.path,
-                                };
-                                results.push(temp);
-                            }
                         }
                         //display the list of results
                         const resultDisplays = document.getElementsByClassName("searchResults");
@@ -93,8 +75,13 @@ function search() {
                             html = "<p class = 'text-center'>No Results :/</p>";
                         } else {
                             for (var j = 0; j < results.length; j++) {
-                                var onclick = "onclick=\x22insertContent('" + results[j].file + "'); insertHTMLContent('title', '<h1 class=text-center>" + results[j].displayName + "</h1>'); clearSearch();\x22";
-                                html += "\n<li class = 'text-center'><a href = '#'" + onclick + ">" + results[j].displayName + "</a></li>";
+                                var onclick =
+                                    "onclick=\x22insertContent('" +
+                                    getNewsPage(results[j].id) +
+                                    "'); insertHTMLContent('title', '<h1 class=text-center>" +
+                                    results[j].title +
+                                    "</h1>'); clearSearch();\x22";
+                                html += "\n<li class = 'text-center'><a href = '#'" + onclick + ">" + results[j].title + "</a></li>";
                             }
                             html += "\n</ul>";
                         }
@@ -114,7 +101,7 @@ function search() {
 //function to hide the visibility of the search result box
 function hideSearchResults() {
     const resultDisplays = document.getElementsByClassName("searchResults");
-    for(var resultDisplay of resultDisplays){
+    for (var resultDisplay of resultDisplays) {
         resultDisplay.style.display = "none";
     }
 }
@@ -122,21 +109,61 @@ function hideSearchResults() {
 //function to reveal the visibility of the search result box
 function revealSearchResults() {
     const resultDisplays = document.getElementsByClassName("searchResults");
-    for(var resultDisplay of resultDisplays){
+    for (var resultDisplay of resultDisplays) {
         resultDisplay.style.display = "block";
     }
 }
 
 //function to clear the searches
-function clearSearch(){
+function clearSearch() {
     const resultDisplays = document.getElementsByClassName("searchResults");
-    for(var resultDisplay of resultDisplays){
+    for (var resultDisplay of resultDisplays) {
         resultDisplay.innerHTML = "";
     }
     const searchField = document.getElementsByClassName("searchBar");
-    for (var searchBar of searchField){
+    for (var searchBar of searchField) {
         searchBar.value = "";
     }
 }
 
 window.addEventListener("resize", clearSearch);
+
+//function to get the content of a news articles page save it
+function getNewsPage(id) {
+    var path = "/pages/news/article.html";
+    jQuery
+        .ajax({
+            type: "POST",
+            url: "/php/request.php",
+            data: { function: "getArticleContent", request: id },
+            dataType: "json",
+            success: function (obj) {
+                if (!("error" in obj)) {
+                    var result = obj.result;
+                } else {
+                    console.log(obj.error);
+                }
+                window.localStorage.setItem("newsContent", result.content.replace(/\n/g, "<br />"));
+            },
+        })
+        .fail(function (textStatus, errorThrown) {
+            console.log("STATUS: " + textStatus + " ERROR: " + errorThrown);
+        });
+    return path;
+}
+
+//function to load the article content
+function getCurrentNewsArticle() {
+    const articlePage = document.getElementById("articleContent");
+    articlePage.innerHTML = window.localStorage.getItem("newsContent");
+}
+
+//TODO
+/**
+ * merge the iframe overwriting and inserting content functions
+ * rethink the about team member system
+ * add bread crumbs to news articles
+ * redesign and streamline the way titles get set
+ * WHY DOES THE NEWS ARTICLE CONTENT GET LOADED BEFORE ANYONE HAS CLICKED ON IT
+ * fix that you cant long click on search results without search results disappearing
+ */

@@ -2,39 +2,6 @@
        header('Content-Type: application/json');
 
        $aResult = array();
-    //    $path = str_replace('/', '\\', $_SERVER['DOCUMENT_ROOT']);
-    //    $root = $path;
-    //    $path .= "\\pages";
-
-    //     //function to get a list of all the html pages
-    //     function getFiles($path, $root){
-    //         $files = array();
-    //         if (is_dir($path)) {
-    //             if ($dh = opendir($path)) {
-    //                 while (($file = readdir($dh)) !== false) {
-    //                     $newPath = $path."\\".$file;
-    //                     if($file != "." && $file != ".."){
-    //                         if (is_dir($newPath)){
-    //                             $temp = getFiles($newPath, $root);
-    //                             $files = array_merge($files, $temp);
-
-    //                         }else{
-    //                             $data = array();
-    //                             $data['fileName'] = pathinfo($newPath)['filename'];
-    //                             $data['path'] = str_replace("//", "/", str_replace("\\", "/", str_replace($root, "/", $newPath)));
-    //                             array_push($files, $data);
-    //                         }
-    //                     }
-    //                 }
-    //                 closedir($dh);
-    //             }
-    //         }
-    //         return $files;
-    //     }
-
-        // $files = getFiles($path, $root);
-        // $aResult['result'] = $files;
-        // echo json_encode($aResult);
 
         //function to take a request query and return a list of matching results
         function getResults($request){
@@ -85,11 +52,40 @@
             $jsonFileContents = file_get_contents($file);
             return json_decode($jsonFileContents, true);
         }
+
+
+
+        //function to get the content for the news article with the given id
+        function getArticleContent($id){
+            //talk to database to get the content for the article with given id
+            $contents = getNewsContent();
+            foreach($contents as $content){
+                if($content["id"] == $id){
+                    return $content;
+                }
+            }
+        }
+
+        //function to return all the news content
+        function getNewsContent(){
+            $path = str_replace('/', '\\', $_SERVER['DOCUMENT_ROOT']);
+            $root = $path;
+            $path .= "\\pages\\news\\articleContent";
+            $articles = getFiles($path);
+            return $articles;
+        }
         
 
 
         $aResult = array();
-        $aResult['result'] = getResults();
+        switch($_POST['function']){
+            case "getResults":
+                $aResult['result'] = getResults($_POST['request']);
+                break;
+            case "getArticleContent":
+                $aResult['result'] = getArticleContent($_POST['request']);
+        }
+
         echo json_encode($aResult);
 
 
