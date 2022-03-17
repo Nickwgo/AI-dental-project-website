@@ -76,9 +76,11 @@ function search() {
                         } else {
                             for (var j = 0; j < results.length; j++) {
                                 var onclick =
-                                    "onclick=\x22insertContent('" +
-                                    getNewsPage(results[j].id) +
-                                    "'); insertHTMLContent('title', '<h1 class=text-center>" +
+                                    "onclick=\x22insertContent(" +
+                                    "getNewsPage(" +
+                                    results[j].id +
+                                    ")" +
+                                    "); insertHTMLContent('title', '<h1 class=text-center>" +
                                     results[j].title +
                                     "</h1>'); clearSearch();\x22";
                                 html += "\n<li class = 'text-center'><a href = '#'" + onclick + ">" + results[j].title + "</a></li>";
@@ -164,6 +166,5 @@ function getCurrentNewsArticle() {
  * rethink the about team member system
  * add bread crumbs to news articles
  * redesign and streamline the way titles get set
- * WHY DOES THE NEWS ARTICLE CONTENT GET LOADED BEFORE ANYONE HAS CLICKED ON IT
  * fix that you cant long click on search results without search results disappearing
  */
