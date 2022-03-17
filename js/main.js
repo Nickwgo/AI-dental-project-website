@@ -21,15 +21,19 @@ $(function () {
     });
 });
 
-function insertContent(filePath) {
-    const iframe = document.getElementById("contentIframe");
+function loadPage(filePath, title) {
+    const iframe = window.top.document.getElementById("contentIframe");
     iframe.src = filePath;
+    insertHTMLContent(window.top.document.getElementById("title"), "<h1 class=text-center>" + title + "</h1>");
     console.log("loaded: " + filePath);
 }
 
-function insertHTMLContent(idToGet, text) {
+function insertHTML(idToGet, text) {
     const tag = document.getElementById(idToGet);
     tag.innerHTML = text;
+}
+function insertHTMLContent(id, text) {
+    id.innerHTML = text;
 }
 
 //function to resize the iframe and its wrapper
@@ -44,11 +48,6 @@ function resizeIFrame() {
 }
 
 window.addEventListener("resize", resizeIFrame);
-
-//function to overwrite the current page with the given html file
-function overwritePage(path) {
-    window.location.pathname = path;
-}
 
 function search() {
     const searchField = document.getElementsByClassName("searchBar");
@@ -75,14 +74,7 @@ function search() {
                             html = "<p class = 'text-center'>No Results :/</p>";
                         } else {
                             for (var j = 0; j < results.length; j++) {
-                                var onclick =
-                                    "onclick=\x22insertContent(" +
-                                    "getNewsPage(" +
-                                    results[j].id +
-                                    ")" +
-                                    "); insertHTMLContent('title', '<h1 class=text-center>" +
-                                    results[j].title +
-                                    "</h1>'); clearSearch();\x22";
+                                var onclick = "onclick=\x22loadPage(" + "getNewsPage(" + results[j].id + "), '" + results[j].title + "'); clearSearch();\x22";
                                 html += "\n<li class = 'text-center'><a href = '#'" + onclick + ">" + results[j].title + "</a></li>";
                             }
                             html += "\n</ul>";
@@ -162,9 +154,9 @@ function getCurrentNewsArticle() {
 
 //TODO
 /**
- * merge the iframe overwriting and inserting content functions
  * rethink the about team member system
  * add bread crumbs to news articles
+ * add a news list page
  * redesign and streamline the way titles get set
  * fix that you cant long click on search results without search results disappearing
  */
