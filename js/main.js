@@ -152,11 +152,55 @@ function getCurrentNewsArticle() {
     articlePage.innerHTML = window.localStorage.getItem("newsContent");
 }
 
+//function to load the list of news into the news list page
+function loadNewsList() {
+    jQuery
+        .ajax({
+            type: "POST",
+            url: "/php/request.php",
+            data: { function: "getNews" },
+            dataType: "json",
+            success: function (obj) {
+                if (!("error" in obj)) {
+                    var results = obj.result;
+                } else {
+                    console.log(obj.error);
+                }
+                const newsList = document.getElementsByClassName("grid-container newsList");
+                var listHTML = "";
+                for (var news of results) {
+                    listHTML +=
+                        "<div class = \x22cell\x22 onmouseover = \x22this.style.borderBottom = '5px dotted rgb(58, 58, 58)'\x22 onmouseout = \x22this.style.borderBottom = '5px dotted rgba(255, 255, 255, 0)'\x22 style = \x22background-color: rgba(224, 224, 224, 0.548); border-radius: 10px; color: black !important; border-bottom: 5px dotted rgba(255, 255, 255, 0)!important;\x22>\n" +
+                        "<a href = \x22#\x22 onclick = \x22getNewsPage('" +
+                        news.id +
+                        "'); loadPage('/pages/news/article.html', '" +
+                        news.title +
+                        "');\x22>\n<div style = 'padding-left: 10px;'>" +
+                        "<h5>" +
+                        news.title +
+                        "</h5><p style = \x22font-size: 12px\x22>" +
+                        news.date +
+                        "</p>" +
+                        "<p style = 'padding-top: 10px;'>" +
+                        news.desc +
+                        "</p>" +
+                        "</div></a>\n" +
+                        "</div>\n<br />";
+                }
+                var HTML = "<div class = \x22grid-y align-center grid-margin-y\x22>\n" + listHTML + "</div>";
+                newsList[0].innerHTML = HTML;
+            },
+        })
+        .fail(function (textStatus, errorThrown) {
+            console.log("STATUS: " + textStatus + " ERROR: " + errorThrown);
+        });
+}
+
 //TODO
 /**
  * rethink the about team member system
- * add bread crumbs to news articles
- * add a news list page
- * redesign and streamline the way titles get set
  * fix that you cant long click on search results without search results disappearing
+ * make it more obvious that you can click the project logo
+ * make the font of the nav menu smaller on medium screens
+ * make pages load their own titles
  */

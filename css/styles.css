@@ -16,6 +16,16 @@ p {
     margin: 0px !important;
 }
 
+/*a*/
+a {
+    color: black !important;
+}
+
+/*h5*/
+h5 {
+    margin: 0px !important;
+}
+
 /*nav menu*/
 nav {
     background-color: rgba(105, 105, 105, 0.15) !important;

@@ -84,6 +84,9 @@
                 break;
             case "getArticleContent":
                 $aResult['result'] = getArticleContent($_POST['request']);
+                break;
+            case "getNews":
+                $aResult['result'] = getNews();
         }
 
         echo json_encode($aResult);

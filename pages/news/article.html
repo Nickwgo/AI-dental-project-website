@@ -10,8 +10,17 @@
         <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
+        <nav aria-label="You are here:" role="navigation" style="border-radius: 10px !important">
+            <ul class="breadcrumbs" style="margin-left: 5%">
+                <li><a href="#" onclick="loadPage('/pages/news/newsList.html', 'News')">news</a></li>
+                <li><span class="show-for-sr">Current: </span> you are here</li>
+            </ul>
+        </nav>
+
         <section id="main section articleContent">
-            <div id="articleContent"></div>
+            <div id="articleContent">
+                <!--article page goes here-->
+            </div>
         </section>
 
         <!--scripts-->
