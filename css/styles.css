@@ -35,6 +35,12 @@ nav {
     font-family: "Red Rose", cursive !important;
 }
 
+@media print, screen and (min-width: 40em) and (max-width: 63.99875em) {
+    nav {
+        font-size: 13px !important;
+    }
+}
+
 .input-group.searchbar {
     margin: 0px !important;
     padding: 0px !important;
@@ -51,7 +57,7 @@ img {
 }
 
 /*main title in middle of home screen*/
-#title {
+#titles {
     color: rgb(209, 209, 209);
 }
 
@@ -162,6 +168,10 @@ ul.vertical li a {
     max-width: calc(80% - 3rem);
     border: 1px solid #c9c9c9;
     padding: 0.5rem;
+}
+
+.top-bar input {
+    max-width: 185px;
 }
 
 /*button*/

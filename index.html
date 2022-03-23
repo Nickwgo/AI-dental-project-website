@@ -16,7 +16,7 @@
             <!--navigation bar-->
             <nav class="top-bar">
                 <container class="top-bar-left">
-                    <div class="grid-x align-middle grid-margin-y">
+                    <div class="grid-x align-middle">
                         <!--unilogo-->
                         <div class="cell shrink">
                             <img class="show-for-large" src="resources/uniLogoWhite.png" alt="university of surrey logo" width="170" />
@@ -25,14 +25,32 @@
                         </div>
 
                         <!--project logo-->
-                        <div class="cell shrink">
-                            <a
-                                href="#"
-                                onclick="loadPage('/pages/home.html', ''); insertHTML('title', '<h1 class=text-center>We Are Using AI To Detect Dental Diseases</h1><p class=text-center>and you can help us</p>');"
-                            >
-                                <img class="show-for-large" src="resources/projectLogo.png" alt="project logo" width="150" />
-                                <img class="show-for-medium-only" src="resources/projectLogo.png" alt="project logo" width="130" />
-                                <img class="show-for-small-only" src="resources/projectLogo.png" alt="project logo" width="100" />
+                        <div class="cell" id="projectLogoCell">
+                            <a href="#" onclick="loadPage('/pages/home.html');">
+                                <img
+                                    class="show-for-large projectLogo"
+                                    src="resources/projectLogo.png"
+                                    alt="project logo"
+                                    width="150"
+                                    onmouseover="resizeElem(this, this.width + 10)"
+                                    onmouseleave="resizeElem(this, this.width - 10)"
+                                />
+                                <img
+                                    class="show-for-medium-only projectLogo"
+                                    src="resources/projectLogo.png"
+                                    alt="project logo"
+                                    width="130"
+                                    onmouseover="resizeElem(this, this.width + 10)"
+                                    onmouseleave="resizeElem(this, this.width - 10)"
+                                />
+                                <img
+                                    class="show-for-small-only projectLogo"
+                                    src="resources/projectLogo.png"
+                                    alt="project logo"
+                                    width="100"
+                                    onmouseover="resizeElem(this, this.width + 10)"
+                                    onmouseleave="resizeElem(this, this.width - 10)"
+                                />
                             </a>
                         </div>
 
@@ -53,10 +71,10 @@
                                                 <a href="#" style="font-size: 13px !important">Research</a>
                                                 <ul class="menu vertical nested text-center">
                                                     <li>
-                                                        <a href="#" onclick="loadPage('/pages/research/dentalDiseases.html', 'Dental Diseases');" style="font-size: 13px !important">Dental Diseases</a>
+                                                        <a href="#" onclick="loadPage('/pages/research/dentalDiseases.html');" style="font-size: 13px !important">Dental Diseases</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" onclick="loadPage('/pages/research/theModel.html', 'The Model');" style="font-size: 13px !important">The Model</a>
+                                                        <a href="#" onclick="loadPage('/pages/research/theModel.html');" style="font-size: 13px !important">The Model</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -65,23 +83,23 @@
                                                 <a href="#" style="font-size: 13px !important">About</a>
                                                 <ul class="menu vertical nested text-center">
                                                     <li>
-                                                        <a href="#" onclick="loadPage('/pages/about/theProject.html', 'The Project');" style="font-size: 13px !important">The project</a>
+                                                        <a href="#" onclick="loadPage('/pages/about/theProject.html');" style="font-size: 13px !important">The project</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" onclick="loadPage('/pages/about/theTeam.html', 'The Team');" style="font-size: 13px !important">The Team</a>
+                                                        <a href="#" onclick="loadPage('/pages/about/theTeam.html');" style="font-size: 13px !important">The Team</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" onclick="loadPage('/pages/about/theData.html', 'The Data');" style="font-size: 13px !important">The Data</a>
+                                                        <a href="#" onclick="loadPage('/pages/about/theData.html');" style="font-size: 13px !important">The Data</a>
                                                     </li>
                                                 </ul>
                                             </li>
                                             <!--news-->
                                             <li>
-                                                <a href="#" onclick="loadPage('/pages/news/newsList.html', 'News');" style="font-size: 13px !important">News</a>
+                                                <a href="#" onclick="loadPage('/pages/news/newsList.html');" style="font-size: 13px !important">News</a>
                                             </li>
                                             <!--contact-->
                                             <li>
-                                                <a href="#" onclick="loadPage('/pages/contact/contact.html', 'Contact');" style="font-size: 13px !important">Contact</a>
+                                                <a href="#" onclick="loadPage('/pages/contact/contact.html');" style="font-size: 13px !important">Contact</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -97,10 +115,10 @@
                                             <a href="#">Research</a>
                                             <ul class="menu align-center text-center">
                                                 <li>
-                                                    <a href="#" onclick="loadPage('/pages/research/dentalDiseases.html', 'Dental Diseases');">Dental Diseases</a>
+                                                    <a href="#" onclick="loadPage('/pages/research/dentalDiseases.html');">Dental Diseases</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" onclick="loadPage('/pages/research/theModel.html', 'The Model');">The Model</a>
+                                                    <a href="#" onclick="loadPage('/pages/research/theModel.html');">The Model</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -109,23 +127,23 @@
                                             <a href="#">About</a>
                                             <ul class="menu align-center text-center">
                                                 <li>
-                                                    <a href="#" onclick="loadPage('/pages/about/theProject.html', 'The Project');">The project</a>
+                                                    <a href="#" onclick="loadPage('/pages/about/theProject.html');">The project</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" onclick="loadPage('/pages/about/theTeam.html', 'The Team');">The Team</a>
+                                                    <a href="#" onclick="loadPage('/pages/about/theTeam.html');">The Team</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" onclick="loadPage('/pages/about/theData.html', 'The Data');">The Data</a>
+                                                    <a href="#" onclick="loadPage('/pages/about/theData.html');">The Data</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <!--news-->
                                         <li>
-                                            <a href="#" onclick="loadPage('/pages/news/newsList.html', 'News');">News</a>
+                                            <a href="#" onclick="loadPage('/pages/news/newsList.html');">News</a>
                                         </li>
                                         <!--contact-->
                                         <li>
-                                            <a href="#" onclick="loadPage('/pages/contact/contact.html', 'Contact');">Contact </a>
+                                            <a href="#" onclick="loadPage('/pages/contact/contact.html');">Contact </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -168,7 +186,6 @@
                                 onfocus="revealSearchResults();"
                                 onBlur="setTimeout(function(){hideSearchResults();}, 100);"
                                 placeholder="Search"
-                                placeholder="Search"
                             />
                         </li>
                         <li><button type="button" class="button">Search</button></li>
@@ -182,9 +199,9 @@
             <!--title-->
             <div class="grid-x">
                 <div class="cell">
-                    <container id="title">
-                        <h1 class="text-center">We Are Using AI To Detect Dental Diseases</h1>
-                        <p class="text-center">and you can help us</p>
+                    <container id="titles">
+                        <h1 class="text-center" id="title">We Are Using AI To Detect Dental Diseases</h1>
+                        <p class="text-center" id="subtitle">and you can help us</p>
                     </container>
                 </div>
             </div>
@@ -207,30 +224,25 @@
                         <hr class="style2" />
                         <ul class="vertical menu">
                             <li class="text-center">
-                                <a
-                                    href="#"
-                                    onclick="loadPage('/pages/home.html', ''); insertHTML('title', '<h1 class=text-center>We Are Using AI To Detect Dental Diseases</h1><p class=text-center>and you can help us</p>');"
-                                >
-                                    home
-                                </a>
+                                <a href="#" onclick="loadPage('/pages/home.html');"> home </a>
                             </li>
                             <li class="text-center">
-                                <a href="#" onclick="loadPage('/pages/research/dentalDiseases.html', 'Dental Diseases');"> dental diseases </a>
+                                <a href="#" onclick="loadPage('/pages/research/dentalDiseases.html');"> dental diseases </a>
                             </li>
                             <li class="text-center">
-                                <a href="#" onclick="loadPage('/pages/research/theModel.html', 'The Model');"> the model </a>
+                                <a href="#" onclick="loadPage('/pages/research/theModel.html');"> the model </a>
                             </li>
                             <li class="text-center">
-                                <a href="#" onclick="loadPage('/pages/about/theProject.html', 'The Project');"> the project </a>
+                                <a href="#" onclick="loadPage('/pages/about/theProject.html');"> the project </a>
                             </li>
                             <li class="text-center">
-                                <a href="#" onclick="loadPage('/pages/about/theTeam.html', 'The Team');"> the team </a>
+                                <a href="#" onclick="loadPage('/pages/about/theTeam.html');"> the team </a>
                             </li>
                             <li class="text-center">
-                                <a href="#" onclick="loadPage('/pages/about/theData.html', 'The Data');"> the data </a>
+                                <a href="#" onclick="loadPage('/pages/about/theData.html');"> the data </a>
                             </li>
                             <li class="text-center">
-                                <a href="#" onclick="loadPage('/pages/news/newsList.html', 'News');"> news </a>
+                                <a href="#" onclick="loadPage('/pages/news/newsList.html');"> news </a>
                             </li>
                         </ul>
                     </div>

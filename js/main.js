@@ -1,5 +1,7 @@
 $(document).foundation();
 $(function () {
+    //set the height of the nav bar
+    setProjectLogoCell();
     // Selecting the iframe element
     const iframe = document.getElementById("contentIframe");
     const wrapper = document.getElementById("iframeWrapper");
@@ -21,19 +23,37 @@ $(function () {
     });
 });
 
-function loadPage(filePath, title) {
+//function to load a page
+function loadPage(filePath, title = "", subtitle = "") {
     const iframe = window.top.document.getElementById("contentIframe");
     iframe.src = filePath;
-    insertHTMLContent(window.top.document.getElementById("title"), "<h1 class=text-center>" + title + "</h1>");
-    console.log("loaded: " + filePath);
+    if (title !== "" || subtitle !== "") {
+        loadTitle(title, subtitle);
+    }
 }
 
-function insertHTML(idToGet, text) {
-    const tag = document.getElementById(idToGet);
-    tag.innerHTML = text;
+//function to load the title
+function loadTitle(title, subtitle = "") {
+    insertContent(window.top.document.getElementById("title"), title);
+    insertContent(window.top.document.getElementById("subtitle"), subtitle);
 }
-function insertHTMLContent(id, text) {
-    id.innerHTML = text;
+
+//function to insert html
+function insertContent(elem, text, isHTML = false) {
+    if (typeof elem == "object") {
+        if (isHTML == true) {
+            elem.innerHTML = text;
+        } else {
+            elem.innerText = text;
+        }
+    } else {
+        const tag = document.getElementById(elem);
+        if (isHTML == true) {
+            tag.innerHTML = text;
+        } else {
+            tag.innerText = text;
+        }
+    }
 }
 
 //function to resize the iframe and its wrapper
@@ -196,11 +216,32 @@ function loadNewsList() {
         });
 }
 
+//function to set the hight of the cell for projectLogo
+function setProjectLogoCell() {
+    const cell = document.getElementById("projectLogoCell");
+    const logos = document.getElementsByClassName("projectLogo");
+    if (cell != null && logos != null) {
+        var height;
+        var width;
+        for (var logo of logos) {
+            if (window.getComputedStyle(logo).display != "none") {
+                height = logo.height;
+                width = logo.width + 10;
+            }
+        }
+        cell.setAttribute("style", "height: " + height + "px!important; " + "width: " + width + "px!important;");
+    }
+}
+
+window.addEventListener("resize", setProjectLogoCell);
+
+//function to resize an element
+function resizeElem(elem, newWidth) {
+    elem.width = newWidth;
+}
+
 //TODO
 /**
  * rethink the about team member system
  * fix that you cant long click on search results without search results disappearing
- * make it more obvious that you can click the project logo
- * make the font of the nav menu smaller on medium screens
- * make pages load their own titles
  */
