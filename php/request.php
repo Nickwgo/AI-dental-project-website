@@ -74,6 +74,15 @@
             $articles = getFiles($path);
             return $articles;
         }
+
+        //function to get the team members
+        function getTeamMembers(){
+            $path = str_replace('/', '\\', $_SERVER['DOCUMENT_ROOT']);
+            $root = $path;
+            $path .= "\\pages\\teamMembers\\members";
+            $members = getFiles($path);
+            return $members;
+        }
         
 
 
@@ -87,6 +96,9 @@
                 break;
             case "getNews":
                 $aResult['result'] = getNews();
+                break;
+            case "getTeamMembers":
+                $aResult['result'] = getTeamMembers();
         }
 
         echo json_encode($aResult);

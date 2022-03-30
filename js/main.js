@@ -240,8 +240,52 @@ function resizeElem(elem, newWidth) {
     elem.width = newWidth;
 }
 
+//function to load the page of team members
+function loadTeamMembers() {
+    jQuery
+        .ajax({
+            type: "POST",
+            url: "/php/request.php",
+            data: { function: "getTeamMembers" },
+            dataType: "json",
+            success: function (obj) {
+                if (!("error" in obj)) {
+                    var results = obj.result;
+                } else {
+                    console.log(obj.error);
+                }
+                const memberList = document.getElementsByClassName("grid-container");
+                listHTML = "<div class=\x22grid-x align-center grid-margin-x grid-margin-y small-up-1 medium-up-3 large-up-4 image-grid\x22>";
+                for (result of results) {
+                    picture = result.name.toLowerCase().replace(" ", "");
+                    html = "<div class=\x22cell shrink\x22>";
+                    html += "<a href=\x22#\x22 onclick=\x22loadPage('/pages/teamMembers/teamMember.html', '" + result.name + "')\x22>";
+                    html += "<article class=\x22teamMemberContainer\x22 aria-label=\x22" + result.title + " " + result.name + "\x22>";
+                    html += "<img class=\x22teamMemberPhoto\x22 src=\x22/resources/" + picture + ".png\x22 alt=\x22" + result.name + "\x22 />";
+                    html += "<div class=\x22info\x22>";
+                    html += "<div class=\x22name\x22>" + result.name + "</div>";
+                    html += "<div class=\x22profession\x22>" + result.role + "</div>";
+                    html += "</div>";
+                    html += "</article>";
+                    html += "</a>";
+                    html += "</div>";
+                    listHTML += html;
+                }
+                listHTML += "</div>";
+
+                memberList[0].innerHTML = listHTML;
+            },
+        })
+        .fail(function (textStatus, errorThrown) {
+            console.log("STATUS: " + textStatus + " ERROR: " + errorThrown);
+        });
+}
+
 //TODO
 /**
  * rethink the about team member system
  * fix that you cant long click on search results without search results disappearing
+ * fix that sometimes the news just doesnt appear
+ * make it remember the last loaded title
+ * change the json stuff t just one file
  */
